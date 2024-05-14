@@ -1,0 +1,7 @@
+POST http://localhost:5000/api/updateLocation
+Content-Type: application/json
+
+{
+    "currentLocation": "source",
+    "destination": "destination"
+}
