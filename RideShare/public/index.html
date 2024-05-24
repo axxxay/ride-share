@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Location Matching</title>
+</head>
+<body>
+    <h1>Ride Matching</h1>
+    <form id="locationForm">
+        <label for="currentLocation">Current Location (lat, long):</label>
+        <input type="text" id="currentLocation" required>
+        <label for="destination">Destination (lat, long):</label>
+        <input type="text" id="destination" required>
+        <button type="submit">Find Matches</button>
+    </form>
+    <div id="matchedResults"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+
+        document.getElementById('locationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const currentLocation = document.getElementById('currentLocation').value;
+            const destination = document.getElementById('destination').value;
+
+            // Emit location update to the server
+            socket.emit('updateLocation', { currentLocation, destination });
+
+            // Clear previous results
+            document.getElementById('matchedResults').innerHTML = '';
+
+            // Listen for matched results from the server
+            socket.on('matchedResults', (results) => {
+                const resultsContainer = document.getElementById('matchedResults');
+                results.forEach((result) => {
+                    const driverInfo = document.createElement('div');
+                    driverInfo.textContent = `${result.name} (${result.distance})`;
+                    resultsContainer.appendChild(driverInfo);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
