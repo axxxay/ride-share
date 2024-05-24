@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RideShare</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUmmFneR-4yUIdPSDXqPFIL-k5bo35Kng&libraries=places"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">RideShare</h1>
+        <div class="card">
+            <select id="userType" class="input">
+                <option value="RideSharer">RideSharer</option>
+                <option value="Splitter">Splitter</option>
+            </select>
+            <input class="input" id="name" type="text" placeholder="Name">
+            <input class="input" id="source" type="text" placeholder="Enter source location">
+            <input class="input" id="destination" type="text" placeholder="Enter destination location">
+            <button class="button" onclick="joinRide()">Join Ride</button>
+        </div>
+        <div id="matchedRiders"></div>
+    </div>
+    
+    <script>
+        function initAutocomplete() {
+            const sourceInput = document.getElementById('source');
+            const destinationInput = document.getElementById('destination');
+
+            const autocompleteSource = new google.maps.places.Autocomplete(sourceInput);
+            const autocompleteDestination = new google.maps.places.Autocomplete(destinationInput);
+
+            autocompleteSource.addListener('place_changed', () => {
+                sourcePlace = autocompleteSource.getPlace();
+            });
+
+            autocompleteDestination.addListener('place_changed', () => {
+                destinationPlace = autocompleteDestination.getPlace();
+            });
+        }
+
+        window.onload = initAutocomplete;
+    </script>
+</body>
+</html>

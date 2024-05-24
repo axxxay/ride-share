@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+
+}
+
+.heading {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+.input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    outline: none;
+}
+
+.button {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+
+#matchedRiders {
+    padding: 1rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 500px;
+    width: 100%;
+}
